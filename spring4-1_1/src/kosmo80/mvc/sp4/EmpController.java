@@ -14,9 +14,16 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 public class EmpController extends MultiActionController {
 	Logger logger = Logger.getLogger(EmpController.class);
+	private EmpLogic empLogic = null;
+	
+ // setter 객체주입 코드
+	public void setEmpLogic(EmpLogic empLogic) {
+		this.empLogic = empLogic;
+	}
 	
 	public ModelAndView getEmpList(HttpServletRequest req, HttpServletResponse res) {
 		logger.info("getEmpList  호출 성공");
+		
 		ModelAndView mav = new ModelAndView();
 	//	/WEB-INF/views/getEmpList.jsp
 		
@@ -24,16 +31,15 @@ public class EmpController extends MultiActionController {
 		Map<String,Object> rmap = new HashMap<>();
 		rmap.put("mem_name", "이순신장군");
 		empList.add(rmap);
+		empList = empLogic.getEmpList(); // NPE가 안일어남
+		
 	// ModelAndView는 scope속성이 request
 		mav.addObject("empList", empList);
 		mav.setViewName("di/getEmpList");
 		return mav;
 	}
 	
-	public void empInsert(HttpServletRequest req
-			            , HttpServletResponse res) 
-	throws Exception
-	{
+	public void empInsert(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("empInsert  호출 성공");
 		res.sendRedirect("/di/empInsertOk.jsp");
 	}
