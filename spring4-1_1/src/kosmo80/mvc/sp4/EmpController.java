@@ -15,31 +15,35 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 public class EmpController extends MultiActionController {
 	Logger logger = Logger.getLogger(EmpController.class);
 	private EmpLogic empLogic = null;
-	
- // setter 객체주입 코드
+	//setter 객체 주입코드
 	public void setEmpLogic(EmpLogic empLogic) {
 		this.empLogic = empLogic;
 	}
-	
-	public ModelAndView getEmpList(HttpServletRequest req, HttpServletResponse res) {
+	public ModelAndView getEmpList(HttpServletRequest req
+			                     , HttpServletResponse res) {
 		logger.info("getEmpList  호출 성공");
-		
 		ModelAndView mav = new ModelAndView();
-	//	/WEB-INF/views/getEmpList.jsp
-		
+		/*
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+		/WEB-INF/views/getEmpList.jsp
+		*/
 		List<Map<String,Object>> empList = new ArrayList<>();
 		Map<String,Object> rmap = new HashMap<>();
 		rmap.put("mem_name", "이순신장군");
 		empList.add(rmap);
-		empList = empLogic.getEmpList(); // NPE가 안일어남
-		
-	// ModelAndView는 scope속성이 request
+		//NPE가 안 일어남.
+		empList = empLogic.getEmpList();
+		//ModelAndView는 scope속성이 request이다.
 		mav.addObject("empList", empList);
 		mav.setViewName("di/getEmpList");
 		return mav;
+		//return "redirect:getEmpList.jsp";
 	}
-	
-	public void empInsert(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public void empInsert(HttpServletRequest req
+			            , HttpServletResponse res) 
+	throws Exception
+	{
 		logger.info("empInsert  호출 성공");
 		res.sendRedirect("/di/empInsertOk.jsp");
 	}
