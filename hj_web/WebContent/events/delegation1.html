@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delegation</title>
+  <style>
+    .selected {
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>one</li>
+    <li>two</li>
+    <li>three</li>
+    <li>four</li>
+    <li>five</li>
+    <li>six</li>
+    <li>seven</li>
+    <li>eight</li>
+    <li>nine</li>
+    <li>ten</li>
+  </ul>
+  <script>
+    // 이벤트에는 currentTarget과 target이라는 정보가 있기에 원하는 target에만 집중적으로 처리를 해줄 수 있기 떄문에
+    // 반복되어지는 클릭을 처리 할 때 즉 부모안에 있는 자식들에게 공통적으로 무언가를 처리 해야 할 때 일일이
+    // 이벤트 리스너를 자식 노드에 추가하는 것보다 부모에 등록하는 것이 좋음 
+    const ul = document.querySelector('ul');
+    ul.addEventListener('click', (event) => {
+      if(event.target.tagName === 'LI') {
+        event.target.classList.add('selected');
+      }
+    })
+  </script>
+</body>
+</html>

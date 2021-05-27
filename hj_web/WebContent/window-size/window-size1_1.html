@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 
+    뷰포트란?
+    웹페이지에서 사용자에게 보여지는 영역이다.
+    전자기기 마다 다르며, 컴터 화면보다는 휴대폰에서 더 적게 나타남.
+    태블릿과 휴대폰이 보급되고 컴터 화면보다 작은 기기들로 웹서핑을
+    시작하니 뷰포트가 안맞는 이슈가 발생함
+    이문제 해결을 위해 기기 브라우저는 전체 웹 페이지를 자신의 
+    화면에 맞게 축소하게됨.
+
+    반응형 웹 제작시 지켜야 할 규칙
+    하나. 큰 고정 너비 요소를 사용하지 말것.
+    둘. 콘텐츠가 렌더링 되기 위해 특정 뷰포트 너비에 의존하지 않도록 할것.
+    셋.  CSS미디어 쿼리를 사용하여 작은 화면과 큰 화면에 다른 스타일 적용
+    할것.
+
+    minimum-scale : 양수 - 뷰포트의 최소 축소비율을 지정한다.
+    기본값은 0.25
+    maximum-scale : 양수 - 뷰포트의 최대 확대비율을 지정한다.
+    기본값은 5.0
+
+    javascript와 java코드를 같이 쓸 수 있는 것처럼
+    텍스트와 변수의 값을 함께 쓸 수 있는 string template가 추가되었다.
+    물결기호 옆에 있는 백틱기호(`)를 이용하셔서 사용 가능함.
+   -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="icon" href="images/favicon.png"/>
+  <style>
+    .tag {
+      display: inline-block;/* display옵션을 주어 컨텐츠를 감싸준다.-왜냐면 외적변화없는 태그라서. */
+      background-color: aquamarine;
+      font-size: 48px;
+      margin-top: 16px;
+      padding: 16px;
+    }
+  </style>
+  <script>
+    function window_close(){
+      window.close();
+    }
+
+  </script>
+</head>
+<body>
+  <div class="tag">Window Size</div>
+  <button onclick="window_close();">닫기</button>
+  <script>
+    const tag = document.querySelector('.tag');
+    //window.addEventListener('resize', function() {
+    //window.addEventListener('resize', event => {
+    window.addEventListener('resize', () => {//arrow function
+      console.log(`window screen: ${window.screen.width}, ${window.screen.height}`);
+      console.log(`window outer: ${window.outerWidth}, ${window.outerHeight}`);
+      console.log(`window inner: ${window.innerWidth}, ${window.innerHeight}`);
+      console.log(`documentElement.clientWidth: ${document.documentElement.clientWidth}, ${document.documentElement.clientHeight}`);
+    });
+  </script>
+</body>
+</html>

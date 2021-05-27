@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DataGrid with Toolbar - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="/hj_web/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    <script type="text/javascript" defer src="/hj_web/js/jquery.min.js"></script>
+    <script type="text/javascript" defer src="/hj_web/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <h2>DataGrid with Toolbar</h2>
+    <p>Put buttons on top toolbar of DataGrid.</p>
+    <div style="margin:20px 0;"></div>
+    <table class="easyui-datagrid" title="DataGrid with Toolbar" style="width:700px;height:250px"
+            data-options="rownumbers:true,singleSelect:true,url:'dept.json',method:'get',toolbar:toolbar">
+        <thead>
+            <tr>
+                <th data-options="field:'deptno',width:80">부서번호</th>
+                <th data-options="field:'dname',width:100">부서명</th>
+                <th data-options="field:'loc',width:80,align:'right'">지역</th>
+            </tr>
+        </thead>
+    </table>
+    <script type="text/javascript">
+        var toolbar = [{
+            text:'Add',
+            iconCls:'icon-add',
+            handler:function(){alert('add')}
+        },{
+            text:'Cut',
+            iconCls:'icon-cut',
+            handler:function(){alert('cut')}
+        },'-',{
+            text:'Save',
+            iconCls:'icon-save',
+            handler:function(){alert('save')}
+        }];
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>콜백함수 추적</title>
+<style>
+ #d_data {
+  width : 300px;
+  height : 200px;
+  border : 1px solid green;
+ }
+</style>
+<script>
+ 'use strict'
+ let xhrObject = null; // 변수 선언
+ 
+ function createRequest(){
+	 try {
+		 // IE8.0이상, 사파리, 오페라, 크롬, 파이어폭스
+		 xhrObject = new XMLHttpRequest();
+		 } catch (trymicrosoft) {
+		 try {
+			 xhrObject = new ActiveObject("Msxml2.XMLHTTP"); // IE6.0	
+		 } catch (e) {
+			xhrObject = null;
+		}
+	}
+		
+		 if(xhrObject==null){
+			 alert("비동기통신 객체 생성 에러.");
+		}
+ }
+ 
+ function startMethod() {
+	 console.log('startMethod 호출 성공');
+ // 비동기 통신 객체 생성됨
+ 	createRequest();
+	xhrObject.open("GET", "lecture.xml", true);
+	xhrObject.onreadystatechange = result_access;
+	xhrObject.send(null);
+ }
+ 
+ function result_access() {
+	 alert("상태값은 " + xhrObject.readyState);
+	 if(xhrObject.readyState == 4){
+		 if(xhrObject.status == 200){
+		 // document.getElementById("d_data").innerHTML = xhrObject.responseText;
+			document.querySelector("#d_data").innerHTML = xhrObject.responseText;
+		}
+	}
+ }
+
+ function delMethod() {
+	 console.log('delMethod 호출 성공');
+	document.querySelector("#d_data").innerHTML = "";		
+ }		
+</script>
+</head>
+<body>
+ <div id="d_data"></div>
+ <button onClick="startMethod()">전송</button>
+ <button onClick="delMethod()">지우기</button>
+</body>
+</html>

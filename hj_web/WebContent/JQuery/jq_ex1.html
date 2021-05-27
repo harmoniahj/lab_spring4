@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery에 대한 예약기호</title>
+    <!-- <script src="/WebContent/js/jquery.min.js"></script> -->
+    <script>
+        const item = document.querySelector('.item');
+    </script>
+</head>
+<body>
+    <div id="d_item" class="item"></div>
+    <script>
+        let d_item = document.getElementById("d_item");
+        let d_item2 = $("#d_item")
+        d_item.innerHTML = "jquerty<b>테스트<b>"
+        d_item2.innerHTML = "jquerty <font-colr='red' size='24px'>테스트</font>"
+    </script>
+</body>
+</html>

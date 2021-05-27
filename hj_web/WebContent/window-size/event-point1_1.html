@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: black;
+    }
+    div {
+      height: 250px;
+      width: 250px;
+      background-color: aquamarine;
+      margin-bottom: 4px;
+    }
+    .gijun {
+      background-color: chocolate;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div class="gijun"></div>
+  <div></div>
+  <div></div>
+  <script>
+    const gijun = document.querySelector(".gijun");
+    gijun.addEventListener('click', (event) => {
+      const rect = gijun.getBoundingClientRect();
+      console.log(rect);
+      console.log(`page: ${event.pageX}, ${event.pageY}`);
+      console.log(`client: ${event.clientX}, ${event.clientY}`);
+    });
+  </script>
+</body>
+</html>

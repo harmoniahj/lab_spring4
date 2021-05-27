@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tag {
+            background-color:bisque;
+            display: inline-block; /* 글자에 맞게 색 나타남 */
+            padding: 10px; /*  글자와 색 사이의 여백 */
+            margin-top: 16px; /*  창과 글자사이의 여백 */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tag">Window Size</div>
+    <script>
+        const tag = document.querySelector('.tag');
+        window.addEventListener('resize', () => {
+            tag.innerHTML = ' window.screen: $(window.screen.width}, $(window.screen.height} <br/>
+                             window.outer: $(window.outerwidth}, $(window.outerheight} <br/>
+                             window.inner: $(window.innerwidth}, $(window.innerheight} <br/>
+                             documentElement.clientWidth: $(documentElement.clientWidth}, $(documentElement.clientHeight}';
+        });
+        // window.addEventListener('resize', function(){
+        //     console.log('resize');
+        // });
+    </script>
+</body>
+</html>

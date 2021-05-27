@@ -1,0 +1,126 @@
+<html> 
+ <head>
+  <meta charset="UTF-8">
+  <title>Break Neck Pizza Delivery</title> 
+  <style>
+   body {
+   	color: darkred;
+  	font-family: sans-serif;
+ 	 margin: 2em;
+ 	 padding: 1em;
+ 	 border: double darkred;
+	}
+​
+  .customer-info {
+  	font-weight: bold;
+	}
+​
+  .customer-data {
+  	color: black;
+	}
+	
+	div#d_result {
+		width: 300px;
+		height: 100px;
+		border: 1px solid red;
+	}
+  </style>    
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript">
+   'use strict'
+   let xhrObject = null; // 변수 선언
+   function createRequest(){
+		try {
+		// IE8.0이상, 사파리, 오페라, 크롬, 파이어폭스
+			xhrObject = new XMLHttpRequest();
+		} catch (trymicrosoft) {
+			try {
+				xhrObject = new ActiveXObject("Msxml2.XMLHTTP"); // IE6.0	
+			} catch (e) {
+				xhrObject = null;
+			}
+		}
+		if(xhrObject==null){
+			alert("비동기통신 객체 생성 에러.");
+		}
+	}
+   let user_tel = '';
+   function getCustomerInfo() {
+	   createRequest();
+	//   let user_tel = document.getElementById("mem_tel").value;
+	   user_tel = $("#mem_tel").val();
+	   $("#mem_tel").val(""); // 사용자가 입력한 값 초기화
+	   alert("사용자가 입력한 전화번호 : " + user_tel);
+	   $("#mem_tel").focus(); // 입력 콤포넌트에 포커스
+	   
+	   let url = "customer.json"; // 목적지 정보 기록
+	   xhrObject.open("GET", url, true);
+	   xhrObject.onreadystatechange = customer_process; // 콜백함수 이름 먼저 등록
+	// 이때 서버로 전송이 일어남. 목적지는 boardAction.jsp 페이지
+	   xhrObject.send(null); // 전송처리
+   }
+  
+   function customer_process() {
+	 /*  if(xhrObject.readyState == 4) {
+		   if(xhrObject.status == 200){
+			   let imsi = xhrObject.responseText;
+			   let data = JSON.stringify(imsi);
+			   alert(data);
+			   let jsonDoc = JSON.parse(data);
+			   alert(jsonDoc.length);
+		   }
+	   }
+	 */
+	 $.ajax({
+		url: 'customer.json',
+		dataType: 'json', 
+		success:function(data) {
+		//	alert("data : " + data);
+			let result = JSON.stringify(data);
+		//	$('#d_result').text(result); // customer.json의 정보 들어감 
+			let jsonDoc = JSON.parse(result);
+		//	$("#d_result").text(jsonDoc[0].mem_tel + ", " + jsonDoc[1].mem_tel);
+			let imsi = '';
+			if(jsonDoc/length > 0){
+				for(let i=0; i<jsonDoc.length; i++) {
+					if(user_tel === jsonDoc[i].mem_tel) { // 전화번호 같은지 비교
+						imsi += jsonDoc[i].mem_addr;
+					}
+				}
+			}
+			
+		 // 배송지 주소 자동 입력
+		 $("#mem_addr")/text(imsi);
+		}
+	    , statusCode: {
+	    	404:function(){
+	    		alert("page not found");
+	    		}
+	    }
+	 })
+   }
+   
+   function orderPizza() {
+	
+ }
+  </script>
+ </head>
+ <body>
+  <div id="d_result"></div>
+  <input type="hidden" id="mem_name" name="mem_name" value="홍길동">
+  <p><img src="breakneck-logo.gif" alt="Break Neck Pizza"></p>
+  
+  <p>Enter your phone number : <input type="text" size="14" id="mem_tel" name="mem_tel" onChange="getCustomerInfo()"> </p>
+  <p>Type your order in here : </p>
+  <p><textarea name="paper" id="paper" rows="6" cols="50"></textarea></p>
+  <p>Your order will be delivered to : </p>
+  <!-- JSON포맷의 이름과 태그의 name속성과 id속성을 같은 값으로 통일, name속성 > jsp에서 사용자가 입력한 값을 읽을 때 사용
+   	   id속성 > javascript에서 사용자가 입력한 값을 읽을 때 사용, name과 id속성 > 같은 값을 사용
+   	      오라클 서버에 테이블 컬럼명과 VO패턴의 멤버변수 이름, Map의 key는 모두 통일해서 사용 	-->
+  <p><textarea name="mem_addr" id="mem_addr" rows="4" cols="50"></textarea></p>
+  <p><input type="button" id="btn_order" value="Order Pizza" onclick="orderPizza()"></p>
+  
+  <div id="d_msg"></div>
+ </body>
+ 
+</html>
