@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import pojo.board.step1.ActionForward;
+
 public class FrontMVC extends HttpServlet{
 	Logger logger = Logger.getLogger(FrontMVC.class);
 	BoardController boardController = new BoardController();
@@ -19,13 +21,13 @@ public class FrontMVC extends HttpServlet{
 	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doService 호출 성공");
 		
-		String uri = req.getRequestURI();//    /board/crudBoard.po1
+		String uri = req.getRequestURI(); // /board/crudBoard.po1
 		logger.info("uri ===> "+uri);
 		
-		String context = req.getContextPath();//    /board/crudBoard.po1
-		String command = uri.substring(context.length()+1);//앞에 /를 삭제한다.
+		String context = req.getContextPath(); // /board/crudBoard.po1
+		String command = uri.substring(context.length()+1); // 앞에 /를 삭제함
 		int end = command.lastIndexOf('.');
-		command = command.substring(0, end);// board/crudBoard
+		command = command.substring(0, end); // board/crudBoard
 		
 		String upmu[] = null;
 		upmu = command.split("/");

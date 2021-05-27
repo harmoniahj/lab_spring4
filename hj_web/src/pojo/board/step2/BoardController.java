@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-//@Configuration
-//@Controller
+import pojo.board.step1.ActionForward;
+
 public class BoardController{
 	Logger logger = Logger.getLogger(BoardController.class);
 	
