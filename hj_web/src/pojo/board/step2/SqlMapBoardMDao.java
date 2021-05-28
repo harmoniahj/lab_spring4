@@ -7,8 +7,8 @@ public class SqlMapBoardMDao {
 	
 	public int boardMInsert() {
 		logger.info("boardMInsert호출 성공");
+		
 		int result = 0;
 		return result;
 	}
-
 }

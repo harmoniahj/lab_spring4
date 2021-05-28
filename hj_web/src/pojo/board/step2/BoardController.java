@@ -18,17 +18,16 @@ public class BoardController{
 		boolean isRedirect = false;
 		String crud = (String)req.getAttribute("crud");
 		String[] upmu = (String[])req.getAttribute("upmu");
+		
 		logger.info("upmu:"+upmu);
 		
 		if("boardInsert".equals(upmu[1])) {
 			logger.info("글쓰기 호출 성공");
-			viewName = "crudBoard.po2?crud=getBoardList";
 			viewName = "boardInsertSuccess.jsp";
 			isRedirect = true;
 			forward.setRedirect(isRedirect);
 			forward.setPath(viewName);
 		}
-		
 		return forward;
-	}
+	}	
 }

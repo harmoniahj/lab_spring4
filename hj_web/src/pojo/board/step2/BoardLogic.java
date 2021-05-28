@@ -18,10 +18,9 @@ public class BoardLogic {
 		
 		if(result1==1 && result2 ==1) {
 			result = 1;
-		}else {
+		} else {
 			result = 0;
 		}
 		return result;
 	}
-
 }

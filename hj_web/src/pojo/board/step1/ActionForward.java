@@ -1,4 +1,4 @@
-package pojo.board.step2;
+package pojo.board.step1;
 
 public class ActionForward {
 	private String  path = null; // 페이지 이름 담기
