@@ -10,10 +10,12 @@ public class SqlMapZipCodeDao {
 	Logger logger = Logger.getLogger(SqlMapZipCodeDao.class);
 	
 	SqlSessionFactory sqlSessionFactory = null;
-	MyBatisCommonFactory mcf = new MyBatisCommonFactory();
+	SqlSession sqlSession = null;
 	
 	public void getZipCodeList() {
 		logger.info("getZipCodeList 호출 성공 ===> " + sqlSessionFactory);
+		
+		sqlSessionFactory = MyBatisCommonFactory.getSqlSessionFactory();
 		String time = null;
 		
 		try {
