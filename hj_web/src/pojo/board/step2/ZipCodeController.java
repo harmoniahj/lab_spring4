@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 public class ZipCodeController extends HttpServlet{
 	Logger logger = Logger.getLogger(ZipCodeController.class);
+	
 	BoardController boardController = new BoardController();
 	MemberController memberController = new MemberController();
 	ZipCodeController zipCodeController = new ZipCodeController();
@@ -25,5 +26,10 @@ public class ZipCodeController extends HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doService(req, res);
+	}
+
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

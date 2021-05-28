@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import pojo.board.step1.ActionForward;
-
 public class FrontMVC extends HttpServlet{
 	Logger logger = Logger.getLogger(FrontMVC.class);
 	BoardController boardController = new BoardController();
@@ -33,16 +31,29 @@ public class FrontMVC extends HttpServlet{
 		upmu = command.split("/");
 		
 		ActionForward forward = null;
+		String crud = req.getParameter("crud");
+		
+		for(String imsi:upmu) {
+			System.out.println("imsi:"+imsi);
+		}
+		req.setAttribute("upmu", upmu);
+		
 		if("member".equals(upmu[0])) {
+			logger.info("회원관리 구현 컨트롤 계층 연결");
 			forward = memberController.execute(req, res);
 		}
 		else if("board".equals(upmu[0])) {
+			logger.info("게시판 구현 컨트롤 계층연결");
+		 // 같은 Controll계층에서 메소드 구분하기 위해
+			req.setAttribute("crud", crud);
 			forward = boardController.execute(req, res);
 		}
 		else if("zipcode".equals(upmu[0])) {
+			logger.info("우편번호 조회 컨트롤 계층 연결");
 			forward = zipCodeController.execute(req, res);
 		}
 		
+	 // 아래 널 비교 없으면 NullPointException이 발생 > 500 에러
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath());

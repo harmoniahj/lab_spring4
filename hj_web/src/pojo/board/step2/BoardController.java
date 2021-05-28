@@ -5,26 +5,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import pojo.board.step1.ActionForward;
-
 public class BoardController{
 	Logger logger = Logger.getLogger(BoardController.class);
 	
 	private BoardLogic boardLogic = new BoardLogic();
 	
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		logger.info("execute 호출 성공");
+		logger.info("step2 ===> execute 호출 성공");
 		
 		ActionForward forward = new ActionForward();
 		String viewName = null;
 		boolean isRedirect = false;
 		String crud = (String)req.getAttribute("crud");
+		String[] upmu = (String[])req.getAttribute("upmu");
+		logger.info("upmu:"+upmu);
 		
-		if("boardInser".contentEquals(crud)) {
+		if("boardInsert".equals(upmu[1])) {
 			logger.info("글쓰기 호출 성공");
-			viewName = "crudBoard.po2?crud=getBoardList"; 
+			viewName = "crudBoard.po2?crud=getBoardList";
+			viewName = "boardInsertSuccess.jsp";
 			isRedirect = true;
-			
 			forward.setRedirect(isRedirect);
 			forward.setPath(viewName);
 		}

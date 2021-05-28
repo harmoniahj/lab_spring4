@@ -11,6 +11,11 @@ import org.apache.log4j.Logger;
 
 public class MemberController extends HttpServlet{
 	Logger logger = Logger.getLogger(BoardController.class);
+
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -41,6 +41,6 @@ web.xml문서는 톰캣 서버 기동시 가장 먼저 스캔하는 문서임.
   </servlet>
   <servlet-mapping>
   	<servlet-name>pojo2_board</servlet-name>
-  	<url-pattern>/board/crudBoard.po2</url-pattern>
+  	<url-pattern>*.po2</url-pattern>
   </servlet-mapping>
 </web-app>
