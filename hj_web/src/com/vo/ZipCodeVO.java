@@ -10,7 +10,8 @@ public class ZipCodeVO {
 	private String bungi   ="";//  
 	private String aptname ="";//  
 	private String upd_date="";//  
-	private String address ="";//  
+	private String address ="";// 
+	
 	public String getUid_no() {
 		return uid_no;
 	}

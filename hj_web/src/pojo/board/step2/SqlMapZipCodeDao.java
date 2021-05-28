@@ -12,11 +12,6 @@ public class SqlMapZipCodeDao {
 	SqlSessionFactory sqlSessionFactory = null;
 	MyBatisCommonFactory mcf = new MyBatisCommonFactory();
 	
-	public SqlMapZipCodeDao() {
-		logger.info("SqlMapZipCodeDao생성자 호출 ");
-		sqlSessionFactory = mcf.getSqlSessionFactory();
-	}
-	
 	public void getZipCodeList() {
 		logger.info("getZipCodeList 호출 성공 ===> " + sqlSessionFactory);
 		String time = null;
@@ -25,7 +20,7 @@ public class SqlMapZipCodeDao {
 			SqlSession sqlSession = sqlSessionFactory.openSession();
 			time = sqlSession.selectOne("getZipCodeList");
 			
-			logger.info("단위 테스트 : "+time);
+			logger.info("단위 테스트 : " + time);
 		} catch (Exception e) {
 			logger.info(e.toString());
 		}

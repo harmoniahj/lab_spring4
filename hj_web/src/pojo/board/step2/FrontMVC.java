@@ -22,10 +22,10 @@ public class FrontMVC extends HttpServlet {
 		logger.info("doService 호출 성공");
 		String uri = req.getRequestURI(); // /board/crudBoard.po1
 		
-		logger.info("uri ===> "+uri);
+		logger.info("uri ===> " + uri);
 		String context = req.getContextPath(); // /board/crudBoard.po1
 		
-		logger.info("context ===> "+context);		
+		logger.info("context ===> " + context);		
 		String command = uri.substring(context.length()+1); // 앞에 /를 삭제
 		
 		int end = command.lastIndexOf('.');
@@ -36,11 +36,11 @@ public class FrontMVC extends HttpServlet {
 		ActionForward forward = null;
 		req.setAttribute("upmu", upmu);
 		
-		if("member".equals(upmu[0])) {
+		if("member".equals(upmu[0])) { // /board/boardInsert.po2
 			logger.info("회원관리 구현 컨트롤 계층 연결");
 			forward = memberController.execute(req,res);
 		}
-		else if("board".equals(upmu[0])) {
+		else if("board".equals(upmu[0])) { // /zipcode/getZipCodeList.po2
 			logger.info("게시판 구현 컨트롤 계층 연결");
 			forward = boardController.execute(req,res);
 		}
