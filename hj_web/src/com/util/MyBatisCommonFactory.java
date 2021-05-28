@@ -11,11 +11,9 @@ import org.apache.log4j.Logger;
 public class MyBatisCommonFactory {
 	static Logger logger = Logger.getLogger(MyBatisCommonFactory.class);
 	public static SqlSessionFactory sqlSessionFactory = null;
-	
 	public MyBatisCommonFactory() {
-		init();
+		//init();
 	}
-	
 	public static void init() {
 		try {
 			String resource = "com/mybatis/MapperConfig.xml";
@@ -38,5 +36,6 @@ public class MyBatisCommonFactory {
 	public static SqlSessionFactory getSqlSessionFactory() {
 		init();
 		return sqlSessionFactory;
-	}	
+	}
+	
 }

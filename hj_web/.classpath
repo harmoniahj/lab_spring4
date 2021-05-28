@@ -11,5 +11,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/workspace_java/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-3.5.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
