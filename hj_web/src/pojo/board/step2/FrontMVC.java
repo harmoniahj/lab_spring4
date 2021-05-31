@@ -36,15 +36,15 @@ public class FrontMVC extends HttpServlet {
 		ActionForward forward = null;
 		req.setAttribute("upmu", upmu);
 		
-		if("member".equals(upmu[0])) { // /board/boardInsert.po2
+		if("member".equals(upmu[0])) { // /member/
 			logger.info("회원관리 구현 컨트롤 계층 연결");
 			forward = memberController.execute(req,res);
 		}
-		else if("board".equals(upmu[0])) { // /zipcode/getZipCodeList.po2
+		else if("board".equals(upmu[0])) { // /board/boardInsert.po2
 			logger.info("게시판 구현 컨트롤 계층 연결");
 			forward = boardController.execute(req,res);
 		}
-		else if("zipcode".equals(upmu[0])) {
+		else if("zipcode".equals(upmu[0])) { // /zipcode/getZipCodeList.po2
 			logger.info("우편번호 조회 컨트롤 계층 연결");
 			forward = zipCodeController.execute(req,res);
 		}
