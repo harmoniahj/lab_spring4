@@ -1,9 +1,9 @@
 package web.mvc;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+
+import com.util.HashMapBinder;
 
 public class Board41Controller extends MultiActionController {
 	Logger logger = Logger.getLogger(Board41Controller.class);
@@ -30,6 +32,11 @@ public class Board41Controller extends MultiActionController {
  */
 	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("getBoardList 호출 성공");
+		
+		HashMapBinder hmb = new  HashMapBinder(req);
+		Map<String, Object> target = new HashMap<>();
+		hmb.bind(target);
+		boardLogic.getBoardList(target); // where bm_no=? and bm_title like '%' || ? || '%'
 		
 		ModelAndView mav = new ModelAndView();
 		String name = "홍길동";
