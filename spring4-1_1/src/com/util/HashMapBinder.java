@@ -21,5 +21,5 @@ public class HashMapBinder {
 			String key = (String)en.nextElement();
 			target.put("key", request.getParameter(key));
 		}
-	} // end of bind`
+	} // end of bind
 }

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 public class DeptController extends MultiActionController {
 	public ModelAndView deptList(HttpServletRequest req, HttpServletResponse res) {
 		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 }

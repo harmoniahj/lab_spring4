@@ -13,7 +13,7 @@ public class HelloController extends AbstractController {
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		logger.info("handleRequestInternal 호출 성공");
+		
 		return null;
 	}
-
 }

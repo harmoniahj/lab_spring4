@@ -16,6 +16,7 @@ public class EmpLogic {
 	
 	public List<Map<String, Object>> getEmpList() {
 		logger.info("getEmpList 호출 성공");
+		
 		return null;
 	}
 }
