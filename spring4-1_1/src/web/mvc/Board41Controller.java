@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,14 +26,19 @@ public class Board41Controller extends MultiActionController {
 /* request로 유지, 메소드를 정의하는것 가능 
  * 파라미터 없어도 괜찮?? > 파라미터에 req나 res가 없으면 아무리 xml 문서에 url매핑을 해두었다 하더라도 찾지를 못함 > 의존적임
  * 처음 ModelAndview 사용 > 상속 받았을 때 doGet에서는 누릴 수 없었던 반환 타입을 바구어 슬 수 있는 혜택을 누릴수 있게됨
- * forward로 페이지를 부름 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 함
+ * forward로 페이지를 부름 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 함 > doGet안에 있는 것이니까 너도 있어야 해줄??라 말하는 것
  */
 	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("getBoardList 호출 성공");
 		
 		ModelAndView mav = new ModelAndView();
-		RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
-		view.forward(req, res);
+		String name = "홍길동";
+		mav.setViewName("a.jsp");
+		mav.addObject("name", name);
+		HttpSession session = req.getSession();
+		session.setAttribute("name", name);
+	//	RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
+	//	view.forward(req, res);
 		
 		return mav;
 	}

@@ -15,10 +15,11 @@
 		<property name="boardLogic" ref="board-logic"/>
 	</bean>
 	
+ <!-- url 매핑해줌 -> 브라우저에서/board/ getBoardList.sp4 했을 때 -->
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
-			<props>
-				<prop key="/board/getBoardList.sp4">board-controller</prop>
+			<props> <!-- 이 url값을 XXX-controller에게 줌 -->
+				<prop key="/board/getBoardList.sp4">board-controller</prop> 
 				<prop key="/board/jsongetBoardList.sp4">board-controller</prop>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
 				<prop key="/di/empInsert.sp4">emp-controller</prop>
@@ -28,10 +29,11 @@
 		</property>
 	</bean>
 	
+ <!-- 자바코드의 메소드 찾아줌 -->
 	<bean id="board-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
-			<props>
-				<prop key="/board/getBoardList.sp4">getBoardList</prop>
+			<props> <!-- 키에 대한 값 : board-controller -->
+				<prop key="/board/getBoardList.sp4">getBoardList</prop> 
 				<prop key="/board/jsongetBoardList.sp4">jsongetBoardList</prop>
 			</props>
 		</property>
