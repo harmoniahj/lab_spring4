@@ -1,6 +1,9 @@
 package web.mvc;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.google.gson.Gson;
 import com.util.HashMapBinder;
 
 public class Board41Controller extends MultiActionController {
@@ -51,7 +55,35 @@ public class Board41Controller extends MultiActionController {
 	}
 	
  // json으로 내보냄 줌 > @RestController > String, @Controller > void, ModelAndView > String
-	public void jsongetBoardList(HttpServletRequest req, HttpServletResponse res) {
-		logger.info("jsongetBoardList 호출 성공");
+ // @RestController > spring boot에서 사용
+	public void jsongetBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("jsonGetBoardList 호출 성공");
+		
+		List<Map<String, Object>> boardList = null;
+		boardList = new ArrayList<>();
+		Map<String, Object> rmap = new HashMap<>();
+		rmap.put("mem_pw", "123");
+		rmap.put("mem_name", "이순신");
+		rmap.put("mem_id", "tomato");
+		boardList.add(rmap);
+		rmap = new HashMap<>();
+		
+		rmap.put("mem_pw", "456");
+		rmap.put("mem_name", "김유신");
+		rmap.put("mem_id", "apple");
+		boardList.add(rmap);
+		rmap = new HashMap<>();
+		
+
+		rmap.put("mem_pw", "789");
+		rmap.put("mem_name", "영미");
+		rmap.put("mem_id", "berry");
+		boardList.add(rmap);
+		
+		Gson g = new Gson();
+		String imsi = g.toJson(boardList);
+		res.setContentType("application/json;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(imsi);
 	}
 }
