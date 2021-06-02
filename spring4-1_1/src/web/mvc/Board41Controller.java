@@ -40,7 +40,7 @@ public class Board41Controller extends MultiActionController {
 		
 		ModelAndView mav = new ModelAndView();
 		String name = "홍길동";
-		mav.setViewName("a.jsp");
+	//	mav.setViewName("a.jsp");
 		mav.addObject("name", name);
 		HttpSession session = req.getSession();
 		session.setAttribute("name", name);
