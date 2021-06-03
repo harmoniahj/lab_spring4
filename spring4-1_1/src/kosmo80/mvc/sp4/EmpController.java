@@ -22,8 +22,7 @@ public class EmpController extends MultiActionController {
 		this.empLogic = empLogic;
 	}
 	
-	public ModelAndView getEmpList(HttpServletRequest req
-			                     , HttpServletResponse res) {
+	public ModelAndView getEmpList(HttpServletRequest req, HttpServletResponse res) {
 		logger.info("getEmpList  호출 성공");
 		ModelAndView mav = new ModelAndView();
 		/*

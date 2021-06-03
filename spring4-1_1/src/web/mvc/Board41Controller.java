@@ -34,22 +34,23 @@ public class Board41Controller extends MultiActionController {
  * 처음 ModelAndview 사용 > 상속 받았을 때 doGet에서는 누릴 수 없었던 반환 타입을 바꾸어 슬 수 있는 혜택을 누릴수 있게됨
  * forward로 페이지를 부름 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 함 > doGet안에 있는 것이니까 너도 있어야 해줄겨??라 말하는 것
  */
+	
+ // spring-servelet.xml > viewResolver
 	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("getBoardList 호출 성공");
 		
-		HashMapBinder hmb = new  HashMapBinder(req);
-		Map<String, Object> target = new HashMap<>();
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String,Object> target = new HashMap<>();
 		hmb.bind(target);
+		
+		List<Map<String,Object>> boardList = null;
 		boardLogic.getBoardList(target); // where bm_no=? and bm_title like '%' || ? || '%'
 		
 		ModelAndView mav = new ModelAndView();
-		String name = "홍길동";
-	//	mav.setViewName("a.jsp"); > 없어도 /board/getBoardList.sp4 의 getBoardList를 가져와 getBoardList.jsp로 이동
-		mav.addObject("name", name);
-		HttpSession session = req.getSession();
-		session.setAttribute("name", name);
-	//	RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
-	//	view.forward(req, res);
+		mav.setViewName("board/getBoardList"); // > 없어도 /board/getBoardList.sp4 의 getBoardList를 가져와 getBoardList.jsp로 이동
+		mav.addObject("boardList", boardList);
+	 // RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
+ 	 // view.forward(req, res);
 		
 		return mav;
 	}
@@ -60,25 +61,7 @@ public class Board41Controller extends MultiActionController {
 		logger.info("jsonGetBoardList 호출 성공");
 		
 		List<Map<String, Object>> boardList = null;
-		boardList = new ArrayList<>();
-		Map<String, Object> rmap = new HashMap<>();
-		rmap.put("mem_pw", "123");
-		rmap.put("mem_name", "이순신");
-		rmap.put("mem_id", "tomato");
-		boardList.add(rmap);
-		rmap = new HashMap<>();
-		
-		rmap.put("mem_pw", "456");
-		rmap.put("mem_name", "김유신");
-		rmap.put("mem_id", "apple");
-		boardList.add(rmap);
-		rmap = new HashMap<>();
-		
-
-		rmap.put("mem_pw", "789");
-		rmap.put("mem_name", "영미");
-		rmap.put("mem_id", "berry");
-		boardList.add(rmap);
+		boardList = boardLogic.getBoardList(null);
 		
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);

@@ -32,10 +32,7 @@
  <!-- 자바코드의 메소드 찾아줌 -->
 	<bean id="board-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
-			<props> <!-- url-mapping과 경로가 같으면 적은 메소드 명으로 찾음
-			
-			
-			 -->
+			<props> <!-- url-mapping과 경로가 같으면 적은 메소드 명으로 찾음 -->
 				<prop key="/board/getBoardList.sp4">getBoardList</prop> 
 				<prop key="/board/jsongetBoardList.sp4">jsongetBoardList</prop>
 			</props>
