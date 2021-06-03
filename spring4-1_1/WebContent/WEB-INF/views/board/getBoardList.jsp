@@ -20,9 +20,11 @@
 <table class="easyui-datagrid" data-options="title:'게시판',toolbar:'#tb_board'" style="width:500px;height:350px">
     <thead>
         <tr>
-            <th data-options="field:'code'">Code</th>
-            <th data-options="field:'name'">Name</th>
-            <th data-options="field:'price'">Price</th>
+            <th data-options="field:'bm_no'">글번호</th>
+            <th data-options="field:'bm_title'">제목</th>
+            <th data-options="field:'bm_date'">작성일</th>
+            <th data-options="field:'bs_file'">첨부파일</th>
+            <th data-options="field:'bm_hit'">조회수</th>
         </tr>
     </thead>
     <tbody>

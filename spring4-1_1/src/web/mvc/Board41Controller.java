@@ -44,7 +44,8 @@ public class Board41Controller extends MultiActionController {
 		hmb.bind(target);
 		
 		List<Map<String,Object>> boardList = null;
-		boardLogic.getBoardList(target); // where bm_no=? and bm_title like '%' || ? || '%'
+		boardList=boardLogic.getBoardList(target); // where bm_no=? and bm_title LIKE '%'||?||'%'
+		logger.info("boardList:"+boardList);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/getBoardList"); // > 없어도 /board/getBoardList.sp4 의 getBoardList를 가져와 getBoardList.jsp로 이동
@@ -52,7 +53,7 @@ public class Board41Controller extends MultiActionController {
 	 // RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
  	 // view.forward(req, res);
 		
-		return mav;
+		return mav; // ModelAndView 반환
 	}
 	
  // json으로 내보냄 줌 > @RestController > String, @Controller > void, ModelAndView > String

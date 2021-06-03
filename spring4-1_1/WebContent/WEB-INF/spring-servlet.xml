@@ -12,9 +12,9 @@
 	
 	<bean id="board-controller" class="web.mvc.Board41Controller">
 		<property name="methodNameResolver" ref="board-resolver"/>
-		<property name="boardLogic" ref="board-logic"/>
-	</bean>
-	
+		<property name="boardLogic" ref="board-logic"/>	
+	</bean>		   <!-- setter 이름 -->
+		
  <!-- url 매핑해줌 -> 브라우저에서/board/ getBoardList.sp4 했을 때 -->
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
