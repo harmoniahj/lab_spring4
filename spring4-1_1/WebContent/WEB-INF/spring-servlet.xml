@@ -2,9 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
 	<bean id="default-handler-mapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	
 	<bean name="/di/hello.sp4" class="kosmo80.mvc.sp4.HelloController"/>
+	
 	<bean id="emp-controller" class="kosmo80.mvc.sp4.EmpController">
 		<property name="methodNameResolver" ref="emp-resolver"/>
 		<property name="empLogic" ref="emp-logic"/>
@@ -12,14 +13,13 @@
 	
 	<bean id="board-controller" class="web.mvc.Board41Controller">
 		<property name="methodNameResolver" ref="board-resolver"/>
-		<property name="boardLogic" ref="board-logic"/>	
-	</bean>		   <!-- setter 이름 -->
-		
- <!-- url 매핑해줌 -> 브라우저에서/board/ getBoardList.sp4 했을 때 -->
+		<property name="boardLogic" ref="board-logic"/>
+	</bean>
+	
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
-			<props> <!-- 이 url값을 XXX-controller에게 줌 -->
-				<prop key="/board/getBoardList.sp4">board-controller</prop> 
+			<props>
+				<prop key="/board/getBoardList.sp4">board-controller</prop>
 				<prop key="/board/jsongetBoardList.sp4">board-controller</prop>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
 				<prop key="/di/empInsert.sp4">emp-controller</prop>
@@ -29,11 +29,10 @@
 		</property>
 	</bean>
 	
- <!-- 자바코드의 메소드 찾아줌 -->
 	<bean id="board-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
-			<props> <!-- url-mapping과 경로가 같으면 적은 메소드 명으로 찾음 -->
-				<prop key="/board/getBoardList.sp4">getBoardList</prop> 
+			<props>
+				<prop key="/board/getBoardList.sp4">getBoardList</prop>
 				<prop key="/board/jsongetBoardList.sp4">jsongetBoardList</prop>
 			</props>
 		</property>
@@ -42,7 +41,7 @@
 	<bean id="emp-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
 			<props>
-				<prop key="/di/getEmpList.sp4">getEm`pList</prop>
+				<prop key="/di/getEmpList.sp4">getEmpList</prop>
 				<prop key="/di/empInsert.sp4">empInsert</prop>
 				<prop key="/di/empUpdate.sp4">empUpdate</prop>
 				<prop key="/di/empDelete.sp4">empDelete</prop>

@@ -20,23 +20,24 @@ import com.util.HashMapBinder;
 
 public class Board41Controller extends MultiActionController {
 	Logger logger = Logger.getLogger(Board41Controller.class);
- // <bean id="board-controller">
- //	 <property name="boardLogic"> -> setter메소드 명
+	
 	private Board41Logic boardLogic = null;
-
- // setter 메소드를 통해 게으른 객체 주입
+	
+	//setter메소드를 통하여 게으른 객체 주입
 	public void setBoardLogic(Board41Logic boardLogic) {
 		this.boardLogic = boardLogic;
 	}
+	/* request로 유지, 메소드를 정의하는 것은 가능
+	 * 파라미터가 없이도 괜찮???
+	 * 파라미터에 req나 res가 없으면 아무리 xml문서에 url매핑을 해두었다 하더라도 찾지 못함 > 의존적
+	 * 최초 ModelAndView를 사용 > 이것은 MultiActionController를 상속 받았을 때 
+	 * 우리가 doGet에서는 누릴 수 없었던 반환 타입을 바꾸어 쓸 수 있는 혜택을 누릴 수 있게 됨
+	 *  forward로 페이지를 부름
+	 *  ModelAndView가 있는데 굳이 파라미터에 req, res가 있어야만 한다 그렇지 않으면 매핑을 해주지 않을  것이라고 
+	 *  말하는 것은 앞뒤가 맞지 않음 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 한다. doGet안에 있는 것여서 너도 있어야 해줄거야? 라고 말하는 것 
+	 */
 	
-/* request로 유지, 메소드를 정의하는것 가능 
- * 파라미터 없어도 괜찮?? > 파라미터에 req나 res가 없으면 아무리 xml 문서에 url매핑을 해두었다 하더라도 찾지를 못함 > 의존적임
- * 처음 ModelAndview 사용 > 상속 받았을 때 doGet에서는 누릴 수 없었던 반환 타입을 바꾸어 슬 수 있는 혜택을 누릴수 있게됨
- * forward로 페이지를 부름 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 함 > doGet안에 있는 것이니까 너도 있어야 해줄겨??라 말하는 것
- */
-	
- // spring-servelet.xml > viewResolver
-	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res)  throws Exception {
 		logger.info("getBoardList 호출 성공");
 		
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -45,29 +46,30 @@ public class Board41Controller extends MultiActionController {
 		
 		List<Map<String,Object>> boardList = null;
 		boardList=boardLogic.getBoardList(target); // where bm_no=? and bm_title LIKE '%'||?||'%'
-		logger.info("boardList:"+boardList);
+		
+		logger.info("boardList:" + boardList);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("board/getBoardList"); // > 없어도 /board/getBoardList.sp4 의 getBoardList를 가져와 getBoardList.jsp로 이동
+		mav.setViewName("board/getBoardList");
 		mav.addObject("boardList", boardList);
 	 // RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
- 	 // view.forward(req, res);
+	 // view.forward(req, res);
 		
-		return mav; // ModelAndView 반환
+		return mav;
 	}
 	
- // json으로 내보냄 줌 > @RestController > String, @Controller > void, ModelAndView > String
- // @RestController > spring boot에서 사용
+ // json으로 내보내줌 - @RestController : String, @Controller : void, ModelAndView, String
+ // @RestController
 	public void jsongetBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("jsonGetBoardList 호출 성공");
 		
-		List<Map<String, Object>> boardList = null;
+		List<Map<String,Object>> boardList = null;
 		boardList = boardLogic.getBoardList(null);
 		
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);
-		res.setContentType("application/json;charset=utf-8");
 		PrintWriter out = res.getWriter();
+		res.setContentType("application/json;charset=utf-8");
 		out.print(imsi);
 	}
 }
