@@ -49,7 +49,7 @@
 	<th data-options="field:'BS_FILE'">첨부파일</th>
 	<th data-options="field:'BM_HIT'">조회수</th>
    </tr>
- </thead>
+  </thead>
  </table>
  
  <div id="tb_board2" style="padding:2px 5px;">
