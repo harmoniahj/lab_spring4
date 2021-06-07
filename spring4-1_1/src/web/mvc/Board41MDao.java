@@ -12,13 +12,14 @@ public class Board41MDao {
 	Logger logger = Logger.getLogger(Board41MDao.class);
 	
 	private SqlSessionTemplate sqlSessionTemplate = null;
+	
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
 	public List<Map<String, Object>> getBoardList(Map<String, Object> pmap) {
 		List<Map<String, Object>> boardList = null;
-		//List<BoardMVO> boardList2 = null;
+	 // List<BoardMVO> boardList2 = null;
 		boardList = sqlSessionTemplate.selectList("getBoardList",pmap);
 		/*
 		boardList2 = sqlSessionTemplate.selectList("getBoardMap",pmap);
@@ -30,5 +31,10 @@ public class Board41MDao {
 		}
 		*/
 		return boardList;
+	}
+
+	public void boardMInsert(Map<String, Object> pmap) {
+		// TODO Auto-generated method stub
+		
 	}
 }

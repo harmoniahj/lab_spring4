@@ -72,4 +72,22 @@ public class Board41Controller extends MultiActionController {
 		res.setContentType("application/json;charset=utf-8");
 		out.print(imsi);
 	}
+	
+	public void boardInsert(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("boardInsert 호출 성공");
+		
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String, Object> pmap = new HashMap<>();
+	 // 사용자가 입력한 값이나 서버에서 클라이언트로 요청한 값 넘김
+		hmb.bind(pmap);
+		int result = 0;
+		result = boardLogic.boardInsert(pmap);
+		
+		if(result == 1) {
+			res.sendRedirect("./getBoardList.jsp");
+		}
+		else {
+			res.sendRedirect("등록실패 페이지 이동처리");
+		}
+	}
 }

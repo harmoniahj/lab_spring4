@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType= "text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,11 +11,11 @@
  	var tv = new Object();
  	tv.color = "black";
  	tv.price = 3000000;
- 	tv.info = function() {
-		document.write("색상 : " + tv.color, "<br>");
-		document.write("가격 : " + tv.price , "<br>");
+ 	tv.info = function(){
+		document.write("색상 : "+tv.color,"<br>");
+		document.write("가격 : "+tv.price,"<br>");
 	}
- 	tv.info();
+	tv.info();
  	
  	const today = new Date();
  	const mon = today.getMonth();
