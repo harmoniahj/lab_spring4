@@ -20,11 +20,11 @@
 	
 	<insert id="boardMInsert" parameterType="map">
 		insert into board_master2021(bm_no, bm_title, bm_writer, bm_email, bm_content, bm_date, bm_group, bm_pos, bm_step, bm_pw) 
-		values(#{bm_no},#{bm_title},#{bm_writer},#{bm_email}, #{bm_content}, to_char(sysdate, 'YYYY-MM-DD'), 0,0,0,#{bm_pw})
+		values(#{bm_no},#{bm_title},#{bm_writer},#{bm_email}, #{bm_content}, to_char(sysdate, 'YYYY-MM-DD'), 0, 0, 0, #{bm_pw})
 	</insert>
 	
 	<insert id="boardSInsert" parameterType="map">
-		insert into board_sub2021(bm_no,bs_seq,bs_file,bs_size) values(#{bm_no},#{bs_seq},#{bs_file},#{bs_size})
+		insert into board_sub2021(bm_no, bs_seq, bs_file, bs_size) values(#{bm_no}, #{bs_seq}, #{bs_file}, #{bs_size})
 	</insert>
 
 	<select id="getBoardList" parameterType="map" resultType="map">

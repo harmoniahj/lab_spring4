@@ -26,6 +26,7 @@ public class Board41Logic {
 		return boardList;
 	}
 	
+ // board/boardInsert.sp4?bm_no=10&bm_title=게시판&bs_file=a.txt&bm_writer=김유신&bm_email=test@hot.com&bm_content=내용&bm_pw=123
 	public int boardInsert(Map<String, Object> pmap) {
 		logger.info("boardInsert 성공");
 		

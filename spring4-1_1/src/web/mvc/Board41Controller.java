@@ -87,7 +87,7 @@ public class Board41Controller extends MultiActionController {
 			res.sendRedirect("./getBoardList.jsp");
 		}
 		else {
-			res.sendRedirect("등록실패 페이지 이동처리");
+			res.sendRedirect("./boardInsertFail.jsp");
 		}
 	}
 }

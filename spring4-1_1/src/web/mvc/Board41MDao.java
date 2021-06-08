@@ -39,6 +39,7 @@ public class Board41MDao {
 		int result = 0;
 		result = 1;
 		sqlSessionTemplate.insert("boardMInsert",pmap);
+		
 		return result;
 	}
 }
