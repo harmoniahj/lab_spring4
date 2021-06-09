@@ -72,8 +72,9 @@ public class Board41Controller extends MultiActionController {
 		
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);
-		PrintWriter out = res.getWriter();
+	 // 밑에 순서 꼭 지키기!!
 		res.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = res.getWriter();
 		out.print(imsi);
 	}
 	
