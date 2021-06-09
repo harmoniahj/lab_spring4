@@ -18,24 +18,62 @@
 	 <result property="bs_size" column="bs_size"/>
 	</resultMap>
 	
+	<delete id="boardMDel" parameterType="map">
+		delete from board_master2021 where bm_no=#{bm_no}
+	</delete>
+	
+	<delete id="boardSDel" parameterType="map">
+		delete from board_sub2021 where bm_no=#{bm_no}
+	</delete>
+	
+	<select id="getBmNo" parameterType="int" resultType="int">
+		select nvl((select /*+index_desc(board_master2021 bm_no_pk)*/ bm_no
+		            from board_master2021 where rownum=1),0)+1 bm_no
+		from dual
+	</select>
+	
+	<select id="getBmGroup" parameterType="map" resultType="int">
+		select nvl((select /*+index_desc(board_master2021 ibm_group)*/ bm_group
+		            from board_master2021
+		            where rownum=1 and bm_group > 0),0)+1 bm_group 
+		from dual
+	</select>
+	
 	<insert id="boardMInsert" parameterType="map">
 		insert into board_master2021(bm_no, bm_title, bm_writer, bm_email, bm_content, bm_date, bm_group, bm_pos, bm_step, bm_pw) 
-		values(#{bm_no},#{bm_title},#{bm_writer},#{bm_email}, #{bm_content}, to_char(sysdate, 'YYYY-MM-DD'), 0, 0, 0, #{bm_pw})
+		values(#{bm_no},#{bm_title},#{bm_writer},#{bm_email}, #{bm_content}, to_char(sysdate, 'YYYY-MM-DD'), 0,0,0,#{bm_pw})
 	</insert>
 	
 	<insert id="boardSInsert" parameterType="map">
-		insert into board_sub2021(bm_no, bs_seq, bs_file, bs_size) values(#{bm_no}, #{bs_seq}, #{bs_file}, #{bs_size})
+		insert into board_sub2021(bm_no,bs_seq,bs_file,bs_size) values(#{bm_no},#{bs_seq},#{bs_file},#{bs_size})
 	</insert>
-
+	
+	<update id="hitCount" parameterType="int">
+		update board_master2021
+		set bm_hit = bm_hit + 1
+		where bm_no = #{value}
+	</update>
+	
+	<update id="bmStepUpdate" parameterType="map">
+		update board_master2021
+		set bm_step = bm_step + 1
+		where bm_group = #{bm_group}
+		<![CDATA[ and bm_step > #{bm_step ]]>
+	</update>
+	
 	<select id="getBoardList" parameterType="map" resultType="map">
 		 select bm.bm_no, bm.bm_title, bm.bm_date, bs.bs_file, bm.bm_hit
 		 from board_master2021 bm, board_sub2021 bs
 		 where bm.bm_no = bs.bm_no(+)	
+		<if test='cb_search!=null and cb_search.equals("bm_title")'>
+	  	   and bm.bm_title LIKE '%'||#{tb_search}||'%'
+		</if>	 
+		order by bm_group  desc, bm_step asc
 	</select>
 	
 	<select id="getBoardMap" parameterType="map" resultMap="boardMMap">
 		 select bm.bm_no, bm.bm_title, bm.bm_date, bs.bs_file, bm.bm_hit
-		 from board_master2021 bm, board_sub2021 bs
+		 from board_master2021 bm,board_sub2021 bs
 		 where bm.bm_no = bs.bm_no(+)	
 	</select>
 	

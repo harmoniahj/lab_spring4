@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
 <%
 	StringBuilder path = new StringBuilder(request.getContextPath());
 	path.append("/");
+	
+	List<Map<String, Object>> boardList = null;
+	boardList = (List<Map<String, Object>>)request.getAttribute("boardList");
+	int size = 0;
+	
+	if(boardList != null) {
+		size = boardList.size();
+	}
+	out.print("size : " + size);
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록[WebContent]</title>
+<title>게시판 목록[WEB-INF]</title>
 <!-- jEasyUI 시작 -->
 <link rel="stylesheet" type="text/css" href="<%=path.toString() %>themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path.toString() %>themes/icon.css"> 
@@ -40,7 +50,7 @@
 	});
  </script>
 	
- <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판'" style="width:500px;height:350px">
+ <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판', toolbar='#tb_board'" style="width:500px;height:350px">
   <thead>
    <tr>
 	<th data-options="field:'BM_NO'">글번호</th>
@@ -52,7 +62,7 @@
   </thead>
  </table>
  
- <div id="tb_board2" style="padding:2px 5px;">
+ <div id="tb_board" style="padding:2px 5px;">
   <a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">조회</a>
   <a href="javascript:ins()" class="easyui-linkbutton" iconCls="icon-add" plain="true">입력</a>
   <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">수정</a>

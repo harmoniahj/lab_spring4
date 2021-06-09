@@ -14,7 +14,7 @@
 			<value>scott</value>
 		</property>
 		<property name="password">
-			<value>tigger</value>
+			<value>tiger</value>
 		</property>
 	</bean>
 	
