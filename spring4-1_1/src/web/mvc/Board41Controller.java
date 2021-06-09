@@ -63,13 +63,17 @@ public class Board41Controller extends MultiActionController {
 	public void jsongetBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("jsonGetBoardList 호출 성공");
 		
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String,Object> target = new HashMap<>();
+		hmb.bind(target);
+		
 		List<Map<String,Object>> boardList = null;
-		boardList = boardLogic.getBoardList(null);
+		boardList=boardLogic.getBoardList(target);
 		
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);
 		PrintWriter out = res.getWriter();
-		res.setContentType("application/json;charset=utf-8");
+		res.setContentType("application/json;charset=UTF-8");
 		out.print(imsi);
 	}
 	
