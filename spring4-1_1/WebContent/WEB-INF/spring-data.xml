@@ -7,8 +7,8 @@
 			<value>oracle.jdbc.driver.OracleDriver</value>
 		</property>
 		<property name="url">
-			<!-- <value>jdbc:oracle:thin:@192.168.0.234:1521:orcl11</value> -->
-			<value>jdbc:oracle:thin:@192.168.0.171:1521:orcl11</value>
+			 <value>jdbc:oracle:thin:@172.30.1.36:1521:orcl11</value> 
+			<!-- <value>jdbc:oracle:thin:@192.168.0.171:1521:orcl11</value> -->
 		</property>
 		<property name="username">
 			<value>scott</value>
@@ -30,8 +30,14 @@
 	<bean id="board-mdao" class="web.mvc.Board41MDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
-	
 	<bean id="board-sdao" class="web.mvc.Board41SDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="bsboard-mdao" class="web.mvc.BS_BoardMDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="bsboard-sdao" class="web.mvc.BS_BoardSDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
 </beans>
