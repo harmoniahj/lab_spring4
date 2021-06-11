@@ -31,13 +31,35 @@ public class Board41Logic {
 		logger.info("boardInsert 성공");
 		
 		int result = 0;
-		int fileOk = 0;
+		int bm_no =0; // 게시글이 새글인지 댓글인지
+		int bm_group = 0;
+		if(pmap.get("bm_group") == null) { // read.jsp에서 댓글 쓰기 버튼 누름
+			bm_group = Integer.parseInt(pmap.get("bm_group").toString());
+		}
+		
+	 // 댓글인지 확인
+		if(bm_group > 0) {
+			boardMDao.bmStepUpdate(pmap); // 조건에 맞지 않으면 처리 생략될 수 있음
+			pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString()) + 1);
+			pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step+bm_step").toString()) + 1);
+		}
+		else { // 새글
+			bm_group = boardMDao.getBmGroup(); // 새글일때 새로운 그룹번호 추가
+			pmap.put("bm_group", bm_group);
+			pmap.put("bm_pos", 0);
+			pmap.put("bm_step", 0);
+		}
+	
+	 // 첨부파일 있는지 확인
+		if((pmap.get("bm_pos") != null) & (pmap.get("bm_pos").toString().length() > 0)) {
+			pmap.put("bm_no", bm_no);
+			pmap.put("bm_seq", 1);
+			boardSDao.boardSinsert(pmap);
+		}
 		boardMDao.boardMInsert(pmap);
 		
-	 // 첨부파일이 존재??
-		if(pmap.containsKey("bm_file")) {
-			fileOk = boardSDao.boardSinsert(pmap);
-		}
+		int fileOk = 0;
+		boardMDao.boardMInsert(pmap);
 		result = 1;
 		
 		return result;

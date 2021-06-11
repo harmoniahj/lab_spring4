@@ -21,7 +21,7 @@
   function search(){
     console.log("조회 호출");
     $('#dg_board').datagrid({
-        url:'jsongetBoardList.sp4',
+        url:'jsongetBoardList.sp4', // 이 url을 통해 Controller, Logic을 거쳐 Dao로 감
     });    
   }
   
@@ -35,9 +35,10 @@
  <script type="text/javascript">
   $(document).ready(function(){
    $('#dg_board').datagrid({
-   toolbar:'#tb_board2'
-  });   		
- });
+	   url: './jsongetBoardList.sp4',
+	   toolbar:'#tb_board2'
+	});   		
+   });
  </script>
  <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판'" style="width:500px;height:350px">
   <thead>

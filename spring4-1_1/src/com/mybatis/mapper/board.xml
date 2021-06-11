@@ -58,7 +58,7 @@
 		update board_master2021
 		set bm_step = bm_step + 1
 		where bm_group = #{bm_group}
-		<![CDATA[ and bm_step > #{bm_step ]]>
+		<![CDATA[ and bm_step > #{bm_step ]]> <!-- >가 태그가 아닌 쿼리문(텍스트)으로 인식하려면 CDATA필요 -->
 	</update>
 	
 	<select id="getBoardList" parameterType="map" resultType="map">
