@@ -106,11 +106,12 @@
    			if(i == size) break;
    %>
    <tr>
-	<th><%=rmap.get("BM_NO") %></th>
-	<th><%=rmap.get("BM_TITLE") %></th>
-	<th><%=rmap.get("BM_DATE") %></th>
-	<th><%=rmap.get("BS_FILE") %></th>
-	<th><%=rmap.get("BM_HIT") %></th>
+    <td><%=rmap.get("BM_NO") %></td>
+    <td><%=rmap.get("BM_TITLE") %></td>
+    <td><a href="getBoardDetail.sp4?bm_no=<%=rmap.get("BM_NO")%>"><%=rmap.get("BM_TITLE") %></a></td>
+    <td><%=rmap.get("BM_DATE") %></td>
+    <td><%=rmap.get("BS_FILE") %></td>
+    <td><%=rmap.get("BM_HIT") %></td>
    </tr>
   </tbody>
   <% }
@@ -123,6 +124,6 @@
   <a id="btn_ins" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">입력</a>
   <a id="btn_upd" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">수정</a>
   <a id="btn_del" href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">삭제</a>
- </div>    
+ </div> 
 </body>
 </html>
