@@ -34,7 +34,7 @@
 		select nvl((select /*+index_desc(board_master2021 ibm_group)*/ bm_group
 					from board_master2021 where rownum=1 and bm_group > 0),0)+1 bm_group 
 		from dual
-	</select>
+	</select> <!-- board/boardInsert.sp4?bm_no=10&bm_title=게시판&bs_file=a.txt&bm_writer=김유신&bm_email=test@hot.com&bm_content=내용&bm_pw=123 -->
 	<insert id="boardMInsert" parameterType="map">
 	insert into board_master2021(bm_no, bm_title, bm_writer, bm_email,
 	bm_content, bm_date, bm_group, bm_pos, bm_step, bm_pw)

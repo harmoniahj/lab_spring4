@@ -97,7 +97,7 @@
    <input type="hidden" name="bm_group" value="<%=bm_group%>">
    <input type="hidden" name="bm_pos" value="<%=bm_pos%>">
    <input type="hidden" name="bm_step" value="<%=bm_step%>">
-  <!-- <form id="f_boardAdd"> -->
+ <!-- <form id="f_boardAdd"> -->
    <table>
     <tr>
      <td width="100px">제목</td>

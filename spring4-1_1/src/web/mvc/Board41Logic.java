@@ -28,37 +28,36 @@ public class Board41Logic {
 	
  // board/boardInsert.sp4?bm_no=10&bm_title=게시판&bs_file=a.txt&bm_writer=김유신&bm_email=test@hot.com&bm_content=내용&bm_pw=123
 	public int boardInsert(Map<String, Object> pmap) {
-		logger.info("boardInsert 성공");
+		logger.info("boardInsert 호출 성공");
 		
 		int result = 0;
-		int bm_no =0; // 게시글이 새글인지 댓글인지
+		int bm_no = 0;
 		int bm_group = 0;
-		if(pmap.get("bm_group") == null) { // read.jsp에서 댓글 쓰기 버튼 누름
+		
+		if(pmap.get("bm_group")!=null) { // read.jsp누름
 			bm_group = Integer.parseInt(pmap.get("bm_group").toString());
 		}
-		
 	 // 댓글인지 확인
 		if(bm_group > 0) {
-			boardMDao.bmStepUpdate(pmap); // 조건에 맞지 않으면 처리 생략될 수 있음
-			pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString()) + 1);
-			pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step+bm_step").toString()) + 1);
+			boardMDao.bmStepUpdate(pmap); // 조건에 맞지 않으면 처리가 생략될 수 있음
+			pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString())+1);
+			pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step").toString())+1);
 		}
-		else { // 새글
-			bm_group = boardMDao.getBmGroup(); // 새글일때 새로운 그룹번호 추가
+	 // 새글일때
+		else {
+			bm_group = boardMDao.getBmGroup();
+			
 			pmap.put("bm_group", bm_group);
-			pmap.put("bm_pos", 0);
-			pmap.put("bm_step", 0);
+			pmap.put("bm_pos",0);
+			pmap.put("bm_step",0);
 		}
-	
 	 // 첨부파일 있는지 확인
-		if((pmap.get("bm_pos") != null) & (pmap.get("bm_pos").toString().length() > 0)) {
+		if((pmap.get("bm_pos")!=null)&(pmap.get("bm_pos").toString().length() > 0)) {
 			pmap.put("bm_no", bm_no);
 			pmap.put("bm_seq", 1);
-			boardSDao.boardSinsert(pmap);
+			
+			boardSDao.boardSinsert(pmap);			
 		}
-		boardMDao.boardMInsert(pmap);
-		
-		int fileOk = 0;
 		boardMDao.boardMInsert(pmap);
 		result = 1;
 		
