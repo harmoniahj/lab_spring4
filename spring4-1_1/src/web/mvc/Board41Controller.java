@@ -36,12 +36,14 @@ public class Board41Controller extends MultiActionController {
 	 *  말하는 것은 앞뒤가 맞지 않음 > 굳이 없어도 되는 것을 형식적으로 가지고 있어야 한다. doGet안에 있는 것여서 너도 있어야 해줄거야? 라고 말하는 것 
 	 */
 	
+ // 게시글 상세 조회 > return : ModelAndView(전체조회와 하나로 합쳐져 target에 구분값 추가)
 	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res)  throws Exception {
 		logger.info("getBoardList 호출 성공");
 		
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String,Object> target = new HashMap<>();
-		hmb.bind(target);
+		hmb.bind(target); 
+		target.put("gubun", "");
 		
 		List<Map<String,Object>> boardList = null;
 		boardList = boardLogic.getBoardList(target); // where bm_no=? and bm_title LIKE '%'||?||'%'
@@ -63,6 +65,8 @@ public class Board41Controller extends MultiActionController {
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String,Object> target = new HashMap<>();
 		hmb.bind(target); // bm_no값 담음
+		target.put("gubun", "detail");
+		
 		logger.info("bm_no" + target.get("bm_no"));
 		 
 		List<Map<String,Object>> boardDetail = null;

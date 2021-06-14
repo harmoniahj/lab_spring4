@@ -22,7 +22,17 @@ public class Board41Logic {
 		logger.info("getBoardList 호출 성공");
 		
 		List<Map<String,Object>> boardList = null;
-		boardList = boardMDao.getBoardList(pmap);
+		String gubun = null;
+		if(pmap.get("gubun") != null) {
+			gubun = pmap.get("gubun").toString();
+		}
+		
+		if(gubun != null && "detail".equals(gubun)) {
+			int bm_no = 0;
+			bm_no = Integer.parseInt(pmap.get("bm_no").toString());
+			boardMDao.hitCount(bm_no);
+		}
+;		boardList = boardMDao.getBoardList(pmap);
 		return boardList;
 	}
 	
