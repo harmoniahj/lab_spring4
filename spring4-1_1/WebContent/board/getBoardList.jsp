@@ -59,23 +59,28 @@
  </div> 
    
 <!-- 글쓰기 화면 시작 -->
- <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:true" style="width:600px; height:350px; padding:10px">
+ <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false" style="width:600px;height:650px;padding:10px">
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="Email:" labelPosition="top" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;">
+   <input class="easyui-textbox" label="제목 : " labelPosition="top" data-options="prompt:'제목'" style="width:400px;">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="First Name:" labelPosition="top" style="width:100%;">
+   <input class="easyui-textbox" label="작성자 : " labelPosition="top" data-options="prompt:'작성자'" style="width:250px;">
+  </div>        
+  <div style="margin-bottom:20px">
+   <input class="easyui-textbox" label="내용 : " labelPosition="top" data-options="prompt:'내용',multiline:true, width:500, height:120">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="Last Name:" labelPosition="top" style="width:100%;">
+   <input class="easyui-textbox" label="Email : " labelPosition="top" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="Company:" labelPosition="top" style="width:100%;">
+   <input class="easyui-textbox" label="비밀번호 : " labelPosition="top" style="width:200;">
   </div>
-        
-  <div>
-   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Register</a>
-  </div>  
+  <div style="margin-bottom:20px">
+   <input class="easyui-filebox" label="첨부파일 : " labelPosition="top" data-options="width:'400px'" >
+  </div>
+   <div>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%; height:32px">Register</a>
+  </div>
  </div> 
 </body>
 </html>

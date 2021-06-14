@@ -48,7 +48,7 @@ public class Board41Controller extends MultiActionController {
 		List<Map<String,Object>> boardList = null;
 		boardList = boardLogic.getBoardList(target); // where bm_no=? and bm_title LIKE '%'||?||'%'
 		
-		logger.info("boardList:" + boardList);
+		logger.info("boardList : " + boardList);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/getBoardList");

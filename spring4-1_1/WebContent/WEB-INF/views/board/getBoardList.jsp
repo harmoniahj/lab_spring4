@@ -90,11 +90,11 @@
  <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판',toolbar:'#tb_board'" style="width: 800px">
   <thead>
    <tr>
-	<th>글번호</th>
-	<th>제목</th>
-	<th>작성일</th>
-	<th>첨부파일</th>
-	<th>조회수</th>
+	<th data-options="field:'BM_NO', width:100">글번호</th>
+	<th data-options="field:'BM_TITLE', width:100">제목</th>
+    <th data-options="field:'BM_DATE', width:100">작성일</th>
+    <th data-options="field:'BS_FILE', width:100">첨부파일</th>
+    <th data-options="field:'BM_HIT', width:100">조회수</th>
    </tr>
   </thead>
  
