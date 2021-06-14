@@ -59,7 +59,7 @@
  </div> 
    
 <!-- 글쓰기 화면 시작 -->
- <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false" style="width:600px;height:650px;padding:10px">
+ <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false" style="width:600px; height:350px; padding:10px">
   <div style="margin-bottom:20px">
    <input class="easyui-textbox" label="제목 : " labelPosition="top" data-options="prompt:'제목'" style="width:400px;">
   </div>
