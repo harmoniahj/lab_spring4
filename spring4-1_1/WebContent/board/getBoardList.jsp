@@ -29,6 +29,11 @@
     console.log("입력창 호출");
     $('#dlg_ins').dialog('open')
   }
+  
+  function insAction(){
+	  console.log("입력액션 호출");
+	  $('#board_ins').submit();
+  }
 </script>
 </head>
 <body>
@@ -36,7 +41,12 @@
   $(document).ready(function(){
    $('#dg_board').datagrid({
 	   url: './jsongetBoardList.sp4',
-	   toolbar:'#tb_board2'
+	   toolbar:'#tb_board2',
+	   onDblClickCell: function(index,field,value) {
+		   if("BS_FILE" == field){\
+			   location.href="download.jsp?bs_file="+value;
+    	   }
+       }
 	});   		
    });
  </script>
@@ -57,30 +67,36 @@
   <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">수정</a>
   <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">삭제</a>
  </div> 
-   
-<!-- 글쓰기 화면 시작 -->
- <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false" style="width:600px; height:350px; padding:10px">
+ <!-- 글쓰기 화면 -->
+ <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false, footer:'#ft_ins'" style="width:600px;height:550px;padding:10px">
+  <form id="board_ins" method="post" enctype="multipart/form-data" action="boardInsert.sp4">    
+   <input type="hidden" name="bm_no" value="0">
+   <input type="hidden" name="bm_group" value="0">
+   <input type="hidden" name="bm_pos" value="0">
+   <input type="hidden" name="bm_step" value="0">
+
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="제목 : " labelPosition="top" data-options="prompt:'제목'" style="width:400px;">
+   <input class="easyui-textbox" name="bm_title" label="제목 : " labelPosition="top" data-options="prompt:'제목'" style="width:400px;">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="작성자 : " labelPosition="top" data-options="prompt:'작성자'" style="width:250px;">
+   <input class="easyui-textbox" name="bm_writer" label="작성자 : " labelPosition="top" data-options="prompt:'작성자'" style="width:250px;">
   </div>        
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="내용 : " labelPosition="top" data-options="prompt:'내용',multiline:true, width:500, height:120">
+   <input class="easyui-textbox" name="bm_content" label="내용 : " labelPosition="top" data-options="prompt:'내용',multiline:true, width:500, height:120">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="Email : " labelPosition="top" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;">
+   <input class="easyui-textbox" name="bm_email" label="Email : " labelPosition="top" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-textbox" label="비밀번호 : " labelPosition="top" style="width:200;">
+   <input class="easyui-textbox" name="bm_pw" label="비밀번호 : " labelPosition="top" style="width:200;">
   </div>
   <div style="margin-bottom:20px">
-   <input class="easyui-filebox" label="첨부파일 : " labelPosition="top" data-options="width:'400px'" >
+   <input class="easyui-filebox" name="bs_file" label="첨부파일 : " labelPosition="top" data-options="width:'400px'" >
   </div>
-   <div>
-   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%; height:32px">Register</a>
+  <div id="ft_ins">
+	<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true">저장</a>
+	<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">취소</a>
   </div>
- </div> 
+  </form>
 </body>
 </html>

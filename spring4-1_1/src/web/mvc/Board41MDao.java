@@ -34,7 +34,7 @@ public class Board41MDao {
 	}
 
 	public int boardMInsert(Map<String, Object> pmap) {
-		logger.info("boardMInsert 호출 성공");
+		logger.info("boardMInsert 호출 성공 : " + pmap);
 		
 		int result = 0;
 		result = 1;
@@ -59,6 +59,15 @@ public class Board41MDao {
 		logger.info("getBmGroup 호출 성공");
 		int result = 0;
 		result = sqlSessionTemplate.selectOne("bmStepUpdate");
+		
+		return result;
+	}
+
+	public int getBmNo() {
+		logger.info("getBmNo 호출 성공");
+		
+		int result = 0;
+		result = sqlSessionTemplate.selectOne("getBmNo");	
 		
 		return result;
 	}

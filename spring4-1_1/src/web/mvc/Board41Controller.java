@@ -109,7 +109,7 @@ public class Board41Controller extends MultiActionController {
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String, Object> pmap = new HashMap<>();
 	 // 사용자가 입력한 값이나 서버에서 클라이언트로 요청한 값 넘김
-		hmb.bind(pmap);
+		hmb.multiBind(pmap);
 		int result = 0;
 		result = boardLogic.boardInsert(pmap);
 		
