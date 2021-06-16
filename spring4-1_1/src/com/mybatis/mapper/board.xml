@@ -19,7 +19,7 @@
 	</resultMap>
 	
 	<delete id="boardMDel" parameterType="map">
-		DELETE FROM board_master2021 WHERE bm_no= #{bm_no}
+		DELETE FROM board_master2021 WHERE bm_no = #{bm_no}
 	</delete>
 	<delete id="boardSDel" parameterType="map">
 		delete from board_sub2021 where bm_no=#{bm_no}

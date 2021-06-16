@@ -19,24 +19,24 @@ public class Board41Logic {
 	}
 	
 	public List<Map<String,Object>> getBoardList(Map<String, Object> pmap) {
-		logger.info("getBoardList 호출 성공");
+		logger.info("getBoardList 호출 성공" + pmap.containsKey("gubun"));
 		
 		List<Map<String,Object>> boardList = null;
 		String gubun = null;
 		if(pmap.get("gubun") != null) {
-			gubun = pmap.get("gubun").toString();
+			gubun = pmap.get("gubun").toString();			
 		}
 		
-		if(gubun != null && "detail".equals(gubun)) {
+		if(gubun!=null && "detail".equals(gubun)) {
 			int bm_no = 0;
 			bm_no = Integer.parseInt(pmap.get("bm_no").toString());
 			boardMDao.hitCount(bm_no);
 		}
-;		boardList = boardMDao.getBoardList(pmap);
+		boardList = boardMDao.getBoardList(pmap);
+		
 		return boardList;
 	}
-	
- // board/boardInsert.sp4?bm_no=10&bm_title=게시판&bs_file=a.txt&bm_writer=김유신&bm_email=test@hot.com&bm_content=내용&bm_pw=123
+ // board/boardInsert.sp4?bm_no=100&bm_title=test&bs_file=a.txt&bm_writer=test&bm_email=test@hot.com&bm_content=내용&bm_pw=123
 	public int boardInsert(Map<String, Object> pmap) {
 		logger.info("boardInsert 호출 성공");
 		
@@ -52,8 +52,8 @@ public class Board41Logic {
 	 // 댓글인지 확인
 		if(bm_group > 0) {
 			boardMDao.bmStepUpdate(pmap); // 조건에 맞지 않으면 처리가 생략될 수 있음
-			pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString())+1);
-			pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step").toString())+1);
+			pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString()) + 1);
+			pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step").toString()) + 1);
 		}
 	 // 새글일때
 		else {
@@ -63,14 +63,13 @@ public class Board41Logic {
 			pmap.put("bm_pos",0);
 			pmap.put("bm_step",0);
 		}
-	 // 첨부파일 있는지 확인
-		if((pmap.get("bs_file")!=null) && ((pmap.get("bs_file").toString().length()) > 0)) {
+	 // 첨부파일이 있는지 확인
+		if((pmap.get("bs_file")!=null)&&((pmap.get("bs_file").toString().length()) > 0)) {
 			logger.info("첨부파일 처리 로직 경유");
 			
 			pmap.put("bm_no", bm_no);
 			pmap.put("bm_seq", 1);
-			
-			boardSDao.boardSinsert(pmap);			
+			boardSDao.boardSInsert(pmap);			
 		}
 		boardMDao.boardMInsert(pmap);
 		result = 1;
