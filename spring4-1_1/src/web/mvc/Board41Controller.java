@@ -116,7 +116,7 @@ public class Board41Controller extends MultiActionController {
 		int result = 0;
 		result = boardLogic.boardInsert(pmap);
 		if(result == 1) {
-		 // res.sendRedirect("./getBoardList.sp4");
+			res.sendRedirect("./getBoardList.sp4");
 		}
 		else {
 			res.sendRedirect("등록실패 페이지 이동처리");

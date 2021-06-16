@@ -49,7 +49,7 @@
 	<update id="bmStepUpdate" parameterType="map">
 		update board_master2021 set bm_step = bm_step + 1
 		where bm_group = #{bm_group}
-		<![CDATA[ and bm_step > #{bm_step ]]> <!-- >는 태그로 인식되기에 쿼리문으로 인식하려면 CDATA입력해야함 -->
+		<![CDATA[ and bm_step > #{bm_step} ]]> <!-- >는 태그로 인식되기에 쿼리문으로 인식하려면 CDATA입력해야함 -->
 	</update>
 	
 	<select id="getBoardList" parameterType="map" resultType="map">

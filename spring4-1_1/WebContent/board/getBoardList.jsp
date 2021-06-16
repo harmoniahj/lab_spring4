@@ -42,15 +42,15 @@
    $('#dg_board').datagrid({
 	   url: './jsongetBoardList.sp4',
 	   toolbar:'#tb_board2',
-	   onDblClickCell: function(index,field,value) {
-		   if("BS_FILE" == field){\
+	   onDblClickCell: function(index, field, value) {
+		   if("BS_FILE" == field){
 			   location.href="download.jsp?bs_file="+value;
     	   }
        }
 	});   		
    });
  </script>
- <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판'" style="width:500px;height:350px">
+ <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판'" style="width:500px; height:350px">
   <thead>
    <tr>
 	<th data-options="field:'BM_NO'">글번호</th>
@@ -58,7 +58,7 @@
 	<th data-options="field:'BM_DATE'">작성일</th>
 	<th data-options="field:'BS_FILE'">첨부파일</th>
 	<th data-options="field:'BM_HIT'">조회수</th>
-   </tr>
+   </tr> 
   </thead>
  </table>
  <div id="tb_board2" style="padding:2px 5px;">
@@ -68,7 +68,7 @@
   <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">삭제</a>
  </div> 
  <!-- 글쓰기 화면 -->
- <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false, footer:'#ft_ins'" style="width:600px;height:550px;padding:10px">
+ <div id="dlg_ins" class="easyui-dialog" title="글쓰기" data-options="iconCls:'icon-save', closed:false, footer:'#ft_ins'" style="width:600px;height:450px;padding:10px">
   <form id="board_ins" method="post" enctype="multipart/form-data" action="boardInsert.sp4">    
    <input type="hidden" name="bm_no" value="0">
    <input type="hidden" name="bm_group" value="0">
