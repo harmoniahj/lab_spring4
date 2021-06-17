@@ -1,0 +1,7 @@
+1). get 방식의 한글처리 > server.xml에서 63줄 URIEncodeing="UTF_8"
+2). post방식 > HangolConversion.toKor() > useBodyEncodingForURI="true"
+3). json형식일때 utf-8
+     > res.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = res.getWriter();
+        out.print(imsi);
+ ** 이 위에 3가지코드 꼭 순서 지키기!! **
