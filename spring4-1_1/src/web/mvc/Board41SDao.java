@@ -23,4 +23,9 @@ public class Board41SDao {
 		
 		return result;
 	}
+
+	public int boardSDelete(Map<String, Object> pmap) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

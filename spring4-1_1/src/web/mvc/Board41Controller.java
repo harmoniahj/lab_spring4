@@ -91,9 +91,9 @@ public class Board41Controller extends MultiActionController {
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String,Object> target = new HashMap<>();
 		hmb.bindPost(target); // bm_no값 담음.
-		logger.info("bm_no : " + target.get("bm_no"));
+		logger.info("bm_no : " + target.get("bm_no")); 
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("board/updateForm");
 		mav.addObject("target", target);
 		
@@ -130,6 +130,40 @@ public class Board41Controller extends MultiActionController {
 		
 		int result = 0;
 		result = boardLogic.boardInsert(pmap);
+		if(result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		}
+		else {
+			res.sendRedirect("등록실패 페이지 이동처리");
+		}
+	}
+	
+	public void boardUpdate(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("boardUpdate호출 성공");
+		
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String,Object> pmap = new HashMap<>();
+		
+		hmb.bindPost(pmap);
+		int result = 0;
+		result = boardLogic.boardUpdate(pmap);
+		if(result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		}
+		else {
+			res.sendRedirect("등록실패 페이지 이동처리");
+		}
+	}
+	
+	public void boardDelete(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("boardUpdate호출 성공");
+		
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String,Object> pmap = new HashMap<>();
+		
+		hmb.bindPost(pmap);
+		int result = 0;
+		result = boardLogic.boardDelete(pmap);
 		if(result == 1) {
 			res.sendRedirect("./getBoardList.sp4");
 		}

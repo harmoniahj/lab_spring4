@@ -17,10 +17,7 @@
 <script type="text/javascript" src="<%=path.toString() %>js/jquery.easyui.min.js"></script>  
 
 <script type="text/javascript">
-  function insAction(){
-	  console.log("입력액션 호출");
-	  $('#board_ins').submit();
-  }	
+ 
 </script>
 </head>
 <body>

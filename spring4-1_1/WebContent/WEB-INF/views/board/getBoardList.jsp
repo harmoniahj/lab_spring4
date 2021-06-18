@@ -126,7 +126,20 @@
    %>  
     <a href="getBoardDetail.sp4?bm_no=<%=rmap.get("BM_NO")%>" style="text-decoration:none;"><%=rmap.get("BM_TITLE") %></a></td>
     <td><%=rmap.get("BM_DATE") %></td>
-    <td><a href="download.jsp?bs_file=<%=rmap.get("BS_FILE") %>" style="text-decoration:none;"><%=rmap.get("BS_FILE") %></a></td>
+    <td>
+    <% 
+    	if(rmap.get("BS_FILE") == null || rmap.get("BS_FILE").toString().length() == 0) {
+    %>
+    <%="" %>
+    <%
+		}
+    	else {
+    %>
+    <a href="download.jsp?bs_file=<%=rmap.get("BS_FILE") %>" style="text-decoration:none;"><%=rmap.get("BS_FILE") %></a>
+    <%
+    	}
+    %>
+    </td>
     <td><%=rmap.get("BM_HIT") %></td>
    </tr>
    <%

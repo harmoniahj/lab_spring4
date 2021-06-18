@@ -6,6 +6,8 @@
 	String bm_no = request.getParameter("bm_no");
 	String bs_file = request.getParameter("bs_file");
 	String bm_writer = request.getParameter("bm_writer");
+	String bm_pw = request.getParameter("bm_pw");
+	String bm_eamil = request.getParameter("bm_eamil");
 	String bm_content = request.getParameter("bm_content");
 	
 	out.print(bm_no + ", " + bm_writer + ", " + bm_content + ", " + bs_file);
@@ -31,7 +33,7 @@ function updAction() {
 <!-- 글수정 화면 시작 --> 
   <form id="board_upd" method="post" action="boardUpdate.sp4">   
 	<input type="hidden" name="bm_no" value="<%=bm_no%>">
-	<input type="hidden" name="bs_file" value="<%=bs_file%>">
+	<input type="hidden" name="bs_file" value="<%=bs_file%>"> 
 	
     <div style="margin-bottom:20px">
      <input class="easyui-textbox" name="bm_title" label="제목:" labelPosition="top" data-options="prompt:'제목'" style="width:400px;">
@@ -55,7 +57,7 @@ function updAction() {
  </div>    
  <div id="ft_ins">
   <a href="javascript:updAction()" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true">수정</a>
-		<a href='javascript:$("#dlg_upd").dialog("close");' class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">닫기</a>
+  <a href='javascript:$("#dlg_upd").dialog("close");' class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">닫기</a>
  </div>
 </body>
 </html>

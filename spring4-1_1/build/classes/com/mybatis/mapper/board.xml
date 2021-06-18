@@ -18,10 +18,10 @@
 	 <result property="bs_size" column="bs_size"/>
 	</resultMap>
 	
-	<delete id="boardMDel" parameterType="map">
-		DELETE FROM board_master2021 WHERE bm_no = #{bm_no}
+	<delete id="boardMDelete" parameterType="map">
+		delete from board_master2021 where bm_no = #{bm_no}
 	</delete>
-	<delete id="boardSDel" parameterType="map">
+	<delete id="boardSDelete" parameterType="map">
 		delete from board_sub2021 where bm_no=#{bm_no}
 	</delete>
 	<select id="getBmNo" parameterType="int" resultType="int">
@@ -51,11 +51,17 @@
 		where bm_group = #{bm_group}
 		<![CDATA[ and bm_step > #{bm_step} ]]> <!-- >는 태그로 인식되기에 쿼리문으로 인식하려면 CDATA입력해야함 -->
 	</update>
+	<update id="boardMUpdate" parameterType="map">
+		update board_master2021
+		set bm_title = #{bm_title}, bm_writer = #{bm_writer}, bm_content = #{bm_content},
+			bm_email = #{bm_email}, bm_pw = #{bm_pw}
+		where bm_no = #{bm_no}
+	</update>
 	
 	<select id="getBoardList" parameterType="map" resultType="map">
-		 SELECT bm.bm_no, bm.bm_title, bm.bm_date, bs.bs_file, bm.bm_hit, bm.bm_group, bm.bm_pos, bm.bm_step, bm.bm_email, bm.bm_pw, bm.bm_writer, bm.bm_content
-		 FROM board_master2021 bm, board_sub2021 bs
-		 WHERE bm.bm_no = bs.bm_no(+)	
+		 select bm.bm_no, bm.bm_title, bm.bm_date, NVL(bs.bs_file, '') bs_file, bm.bm_hit, bm.bm_group, bm.bm_pos, bm.bm_step, bm.bm_email, bm.bm_pw, bm.bm_writer, bm.bm_content
+		 from board_master2021 bm, board_sub2021 bs
+		 where bm.bm_no = bs.bm_no(+)	
 		<if test='cb_search!=null and cb_search.equals("bm_title")'>
 	  	   AND bm.bm_title LIKE '%'||#{tb_search}||'%'
 		</if>	 
