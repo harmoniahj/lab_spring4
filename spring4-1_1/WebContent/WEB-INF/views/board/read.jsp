@@ -105,7 +105,7 @@
 		  height: 450,
 		  closed: false,
 		  cache: false,
-		  href: 'updateForm.jsp?bm_title=<%=bm_title%>&bm_writer=<%=bm_writer%>&bm_content=<%=bm_content%>&bm_no=<%=bm_no%>&bs_file=<%=bs_file%>',
+		  href: 'updateForm.jsp?bm_title=<%=bm_title%>&bm_writer=<%=bm_writer%>&bm_content=<%=bm_content%>&bm_email=<%=bm_email%>&bm_pw=<%=bm_pw%>&bm_no=<%=bm_no%>&bs_file=<%=bs_file%>',
 		  modal: true
 	   });		
   }
