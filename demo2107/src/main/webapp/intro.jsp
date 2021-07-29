@@ -7,6 +7,6 @@
 <title>intro.jsp</title>
 </head>
 <body>
-intro jsp 페이지 입니다.
+ intro jsp 페이지 입니다.
 </body>
 </html>
